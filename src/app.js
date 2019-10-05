@@ -1,0 +1,1 @@
+const app = new FormController(new FormView(), new FormService());
