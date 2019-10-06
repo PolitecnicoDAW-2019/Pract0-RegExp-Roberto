@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/PolitecnicoDAW/Pract0-RegExp-Roberto/issues"
   },
-  "homepage": "https://github.com/PolitecnicoDAW/Pract0-RegExp-Roberto#readme"
+  "homepage": "https://github.com/PolitecnicoDAW/Pract0-RegExp-Roberto#readme",
+  "keywords": [],
+  "devDependencies": {
+    "jasmine-core": "^3.5.0",
+    "karma": "^4.3.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^2.0.1"
+  }
 }
