@@ -12,6 +12,8 @@ class FormController {
         this.view.bindZipCode(this.handleZipCode);
         this.view.bindHomePhone(this.handleHomePhone);
         this.view.bindMobilePhone(this.handleMobilePhone);
+
+        this.view.bindCheckingToInputs();
     }
 
     setInputStatus = (inputElement, status) => {
@@ -55,17 +57,17 @@ class FormController {
     }
 
     handleZipCode = () => {
-        const status = this.service.validateZipCode(this.view.cacheDom.zipCode.value);
+        const status = this.service.validateZipCode(this.view.cacheDom.zipCode.value, this.view.cacheDom.country);
         this.setInputStatus(this.view.cacheDom.zipCode, status);
     }
 
     handleHomePhone = () => {
-        const status = this.service.validateHomePhone(this.view.cacheDom.homePhone.value);
+        const status = this.service.validateHomePhone(this.view.cacheDom.homePhone.value, this.view.cacheDom.country);
         this.setInputStatus(this.view.cacheDom.homePhone, status);
     }
 
     handleMobilePhone = () => {
-        const status = this.service.validaMobilePhone(this.view.cacheDom.mobilePhone.value);
+        const status = this.service.validateMobilePhone(this.view.cacheDom.mobilePhone.value, this.view.cacheDom.country);
         this.setInputStatus(this.view.cacheDom.mobilePhone, status);
     }
 }

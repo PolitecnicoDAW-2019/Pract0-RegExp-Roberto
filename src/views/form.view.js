@@ -11,14 +11,35 @@ class FormView {
 
     findCountry = () => document.getElementsByName('countries').forEach(element => {
         element.addEventListener('click', () => {
-            if(element.checked) {
-                this.cacheDom.country = element.value;
-                this.cacheDom.extraInfo.hidden = false;
-            }
+            this.cacheDom.country = element.value;
+            this.cacheDom.extraInfo.hidden = false;
+            this.cleanHiddenInputs();
         });
     });
 
+    cleanHiddenInputs = () => {
+        [ ...this.cacheDom.extraInfo.getElementsByTagName('input') ].forEach(element => element.value = '');
+        [ ...this.cacheDom.extraInfo.getElementsByTagName('img') ].forEach(element => element.hidden = true);
+        this.cacheDom.btnSubmit.disabled = true;
+    }
+
+    bindCheckingToInputs = () => {
+        [ ...this.cacheDom.form.getElementsByTagName('input') ].forEach(element => element.addEventListener('keyup', () => {
+            const total = [ ...this.cacheDom.form.getElementsByTagName('img') ].reduce((accumulator, current) => {
+                if (current.src.includes('green-tick') && !current.hidden) {
+                    return accumulator + 1;
+                }
+                return accumulator;
+            }, 0);
+            console.log(total)
+            total == 8 ? this.cacheDom.btnSubmit.disabled = false : this.cacheDom.btnSubmit.disabled = true;
+        }))
+    }
+
+
     cacheDom = {
+        form: document.getElementById('formData'),
+        btnSubmit: document.getElementById('btnSubmit'),
         name: document.getElementById('inputName'),
         lastName: document.getElementById('inputLastName'),
         email: document.getElementById('inputEmail'),
@@ -30,4 +51,8 @@ class FormView {
         extraInfo: document.getElementById('extraInfo'),
         country: this.findCountry()
     };
+
+    
+
+    
 }
