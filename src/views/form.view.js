@@ -12,21 +12,21 @@ class FormView {
     findCountry = () => document.getElementsByName('countries').forEach(element => {
         element.addEventListener('click', () => {
             this.cacheDom.country = element.value;
-            this.cacheDom.extraInfo.hidden = false;
+            this.cacheDom.extraInfo.style.display = 'block';
             this.cleanHiddenInputs();
         });
     });
 
     cleanHiddenInputs = () => {
         [ ...this.cacheDom.extraInfo.getElementsByTagName('input') ].forEach(element => element.value = '');
-        [ ...this.cacheDom.extraInfo.getElementsByTagName('img') ].forEach(element => element.hidden = true);
+        [ ...this.cacheDom.extraInfo.getElementsByTagName('img') ].forEach(element => element.style.display = 'none');
         this.cacheDom.btnSubmit.disabled = true;
     }
 
     bindCheckingToInputs = () => {
         [ ...this.cacheDom.form.getElementsByTagName('input') ].forEach(element => element.addEventListener('keyup', () => {
             const total = [ ...this.cacheDom.form.getElementsByTagName('img') ].reduce((accumulator, current) => {
-                if (current.src.includes('green-tick') && !current.hidden) {
+                if (current.src.includes('green-tick') && current.style.display === 'block') {
                     return accumulator + 1;
                 }
                 return accumulator;
@@ -51,8 +51,4 @@ class FormView {
         extraInfo: document.getElementById('extraInfo'),
         country: this.findCountry()
     };
-
-    
-
-    
 }

@@ -19,11 +19,11 @@ class FormController {
     setInputStatus = (inputElement, status) => {
         const greenTickElement = this.getGreenTickElement(inputElement);
         if(status) {
-            greenTickElement.hidden = false;
-            greenTickElement.nextElementSibling.hidden = true;
+            greenTickElement.style.display = 'block';
+            greenTickElement.nextElementSibling.style.display = 'none';
         } else {
-            greenTickElement.hidden = true;
-            greenTickElement.nextElementSibling.hidden = false;
+            greenTickElement.style.display = 'none';
+            greenTickElement.nextElementSibling.style.display = 'block';
         }
     }
 
